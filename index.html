@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kit de emergencia creativa</title>
+  <style>
+      body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: url('Fondo.png') no-repeat center center fixed; /* Cambia 'fondo.jpg' por tu imagen */
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    img {
+      width: 500px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s ease;
+    }
+
+    .botones {
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 0 15px;
+      padding: 15px 30px; /* más grande */
+      border: none;
+      border-radius: 8px;
+      background-color: #8000ff; /* morado */
+      color: white;
+      font-size: 18px; /* más grande */
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #b366ff; /* morado más claro al hover */
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kit de emergencia creativa</h1>
+  <h3>Selecciona tu miedo de hoy para extraer los elementos necesarios</h3>
+
+  <img id="imagen" src="Nube sin fondo.png" alt="Nube" />
+
+  <div class="botones">
+    <button id="btn1">No tengo buenas ideas</button>
+    <button id="btn2">Mi técnica no es buena</button>
+    <button id="btn3">Lo que hago no me representa</button>
+  </div>
+
+  <script>
+    const imagen = document.getElementById('imagen');
+
+    // Configuración de imágenes para cada botón
+    const config = {
+      btn1: { hover: 'boton-1-hover.png', click: 'boton-1-click.png' },
+      btn2: { hover: 'boton-2-hover.png', click: 'boton-2-click.png' },
+      btn3: { hover: 'boton-3-hover.png', click: 'boton-3-click.png' },
+    };
+
+    // Imagen por defecto
+    const defaultImage = "Nube sin fondo.png";
+
+
+    Object.keys(config).forEach(id => {
+      const boton = document.getElementById(id);
+
+      boton.addEventListener('mouseenter', () => {
+        imagen.src = config[id].hover;
+      });
+
+      boton.addEventListener('mouseleave', () => {
+        // Al salir, solo vuelve a la imagen fijada (no siempre a la 1)
+        imagen.src = defaultImage;
+      });
+
+      boton.addEventListener('click', () => {
+        imagen.src = config[id].click;
+      });
+    });
+  </script>
+
+</body>
+</html>
+
